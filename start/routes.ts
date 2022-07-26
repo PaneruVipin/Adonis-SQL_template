@@ -18,9 +18,20 @@
 |
 */
 
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.post('login', 'AuthController.login')
 Route.post('signUp', 'AuthController.signUp')
-Route.resource('user','UsersController').apiOnly().middleware({'*':'auth'})
+Route.group(
+  ()=> Route.resource('user','UsersController')
+).prefix('admin').middleware('auth')
+
+Route.get('health', async ({ response }) => {
+    const report = await HealthCheck.getReport()
+  
+    return report.healthy
+      ? response.ok(report)
+      : response.badRequest(report)
+  })
 

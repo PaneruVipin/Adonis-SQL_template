@@ -25,9 +25,11 @@ export default class SignUpValidator {
    *    ```
    */
   public schema = schema.create({
-    name:schema.string({trim:true, escape:true}, [rules.required()]),
-    email:schema.string({trim:true, escape:true},[rules.email()]),
-    age:schema.number([rules.range(12,50)])
+    first_name:schema.string({trim:true, escape:true}, [rules.required()]),
+    last_name:schema.string.optional({trim:true, escape:true}),
+    email:schema.string({trim:true, escape:true},[rules.email(), rules.unique({table:'users', column:'email'})]),
+    password:schema.string({},[rules.minLength(8)]),
+
   })
 
   /**
@@ -42,6 +44,7 @@ export default class SignUpValidator {
    *
    */
   public messages: CustomMessages = {
-    ...messages
+    ...messages,
+    "unique":"this email is already exist"
   }
 }
