@@ -1,6 +1,4 @@
 import { BaseMailer, MessageContract } from '@ioc:Adonis/Addons/Mail'
-import User from 'App/Models/User'
-
 export default class Verifymail extends BaseMailer {
   /**
    * WANT TO USE A DIFFERENT MAILER?

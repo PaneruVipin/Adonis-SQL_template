@@ -18,11 +18,8 @@
 |
 */
 
-import Mail from '@ioc:Adonis/Addons/Mail'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
-import Verifymail from 'App/Mailers/Verifymail'
-import User from 'App/Models/User'
 
 Route.get('', ()=>{
       return {'hello':'world'}
