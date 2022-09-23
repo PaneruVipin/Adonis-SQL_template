@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { users } from 'App/dummyData'
 import UnauthecatedException from 'App/Exceptions/UnauthecatedException'  
+import User from 'App/Models/User'
 import { appKey } from 'Config/app'
 
 import jwt from 'jsonwebtoken'
@@ -13,10 +13,12 @@ const token=request.headers().authorization
   }
   try{
     const data=jwt.verify(token,appKey)
-    request.loggedInUser=users.find((u:any)=>u.id===data.sub)
-    console.log(data)
+    request.loggedInUser=await User.findOrFail(data.sub)
   }catch(e){
-  throw new UnauthecatedException('token is not valid')
+    if(e.message==="jwt expired")
+     throw new UnauthecatedException('this token is expired')
+     else
+     throw new UnauthecatedException('token are not valid')
   }
  await next()
   }

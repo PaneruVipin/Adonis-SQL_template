@@ -20,6 +20,9 @@ export default class User extends BaseModel {
   @column()
   public dob:string
 
+  @column({})
+  public role:string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

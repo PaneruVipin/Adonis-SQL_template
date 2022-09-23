@@ -41,7 +41,7 @@ const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
         filename: Application.tmpPath('db.sqlite3'),
       },
       useNullAsDefault: true,
-      healthCheck: false,
+      healthCheck: true,
 			debug: false,
     },
 

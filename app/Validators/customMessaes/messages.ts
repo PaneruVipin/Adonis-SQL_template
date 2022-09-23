@@ -6,7 +6,7 @@ const messages:CustomMessages={
     "email":"email should be a valid email",
     "number":" {{field}} should be a number",
     "range":"{{field}} should be this range {{options.start}},{{options.stop}}",
-    "unique":"{{field}} should be unique {{field}}"
+    "unique":"{{field}} should be unique {{field}}",
 }
 
 export default messages

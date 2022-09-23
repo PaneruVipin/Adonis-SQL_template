@@ -20,5 +20,5 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
     super(Logger)
   }
-
+  
   }

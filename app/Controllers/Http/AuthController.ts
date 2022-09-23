@@ -12,19 +12,20 @@ export default class AuthController {
              const data= await request.validate(SignUpValidator)
              const hashedPassword= await Hash.make(data.password)
              return User.create({...data, password:hashedPassword})
+          
            }
-    public async login({request}:HttpContextContract){
-      const data= await request.validate(LoginValidator)
-      const user=await User.query().where('email',data.email).first()
-      if(!user){
-        throw new UnauthecatedException('login credentals are not valid')
-      }
-      const isVerified=await Hash.verify(user.password,data.password)
-      if(!isVerified){
-        throw new UnauthecatedException('login details are not valid')
-      }
-      const token=jwt.sign({sub:user.id},appKey,{expiresIn:60,jwtid:'hello'})
-      return {token,user}
-    }
+      public async login({request}:HttpContextContract){
+              const data= await request.validate(LoginValidator)
+              const user=await User.query().where('email',data.email).first()
+              if(!user){
+                  new UnauthecatedException('login credentals are not valid')
+              }
+              const isVerified=await Hash.verify(user!.password,data.password)
+             if(!isVerified){
+                  throw new UnauthecatedException('login details are not valid')
+               }
+             const token=jwt.sign({sub:user!.id},appKey,{expiresIn:24*60*60,jwtid:'hello'})
+             return {token,user}
+}
     
 }

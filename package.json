@@ -52,9 +52,12 @@
     "youch-terminal": "^2.1.4"
   },
   "dependencies": {
+    "@adonisjs/ally": "^4.1.4",
     "@adonisjs/core": "^5.8.5",
     "@adonisjs/lucid": "^10.0.0",
+    "@adonisjs/mail": "^8.1.2",
     "@adonisjs/repl": "^3.1.11",
+    "@adonisjs/view": "^6.2.0",
     "@types/jsonwebtoken": "^8.5.8",
     "jsonwebtoken": "^8.5.1",
     "luxon": "^3.0.1",

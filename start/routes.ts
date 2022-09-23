@@ -18,14 +18,28 @@
 |
 */
 
+import Mail from '@ioc:Adonis/Addons/Mail'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
+import Verifymail from 'App/Mailers/Verifymail'
+import User from 'App/Models/User'
 
+Route.get('', ()=>{
+      return {'hello':'world'}
+    })
 Route.post('login', 'AuthController.login')
 Route.post('signUp', 'AuthController.signUp')
+
+Route.group(()=>{
+Route.get('me', 'UsersController.me')
+Route.put('me','UsersController.updateMe')
 Route.group(
-  ()=> Route.resource('user','UsersController')
-).prefix('admin').middleware('auth')
+  ()=> Route.resource('user','UsersController').apiOnly().middleware({
+    '*':'accesController:admin,super_admin',
+    'destroy':'accesController:super_admin'
+  })
+).prefix('admin')
+}).middleware('auth')
 
 Route.get('health', async ({ response }) => {
     const report = await HealthCheck.getReport()
@@ -35,3 +49,4 @@ Route.get('health', async ({ response }) => {
       : response.badRequest(report)
   })
 
+ 
