@@ -1,0 +1,1 @@
+{"version":3,"file":"Verifymail.js","sourceRoot":"","sources":["../../../app/Mailers/Verifymail.ts"],"names":[],"mappings":";;AAAA,mEAAqE;AACrE,MAAqB,UAAW,SAAQ,iBAAU;IAiBzC,OAAO,CAAC,OAAwB;QACrC,OAAO;aACN,OAAO,CAAC,mBAAmB,CAAC;aAC5B,IAAI,CAAC,+BAA+B,CAAC;aACrC,EAAE,CAAC,+BAA+B,CAAC;aACnC,QAAQ,CAAC,qBAAqB,EAAC,EAAC,IAAI,EAAC,aAAa,EAAC,CAAC,CAAA;IACvD,CAAC;CACF;AAxBD,6BAwBC"}
